@@ -1,0 +1,347 @@
+/* 
+	PIROBOX EXTENDED 1.2.3
+	15-GEN-2012
+	POWERED BY PIROLAB
+*/
+
+
+/*::::: BACKGROUND OVERLAY :::::*/
+.piro_overlay{
+	position:fixed;
+	top:0; left:0; 
+	width:100%; 
+	height:100%;  
+	z-index:150000;
+	background:#fff;
+	display:none; 
+	cursor:pointer;
+}
+
+/*::::: CONTAINER :::::*/
+.piro_html {
+	position:absolute; 
+	top:0; 
+	left:0; 
+	padding:0; 
+	width:620px; 
+	height:620px; 
+	margin:0; 
+	display:block; 
+	padding:0; 
+	z-index:150001;
+	border: none!important;
+}
+
+/*::::: GENERIC RULES FOR TABLE AND IMG :::::*/
+.piro_html table,.piro_html tbody,.piro_html tr,.piro_html th,.piro_html td{margin:0;padding:0;border:none;vertical-align: top!important;}
+.piro_html img{ margin:0; padding:0; border:none;}
+
+/*::::: TABLE STRUCTURE :::::*/
+.piro_html .h_t_l{ 
+	width:25px; 
+	height:25px; 
+	background: url(new_skin.png) top left no-repeat;
+}
+.piro_html .h_t_r{ 
+	width:25px; 
+	height:25px; 
+	background: url(new_skin.png) top right no-repeat;
+}
+.piro_html .h_t_c{  
+	height:25px;
+	background: url(new_skin_top.png) top repeat-x;
+}
+
+.piro_html .h_c_l{
+	width:25px; 
+	background: url(new_skin_left.png) left repeat-y; 
+}
+.piro_html .h_c_c{
+	background:#fff;
+	margin:0; 
+	padding:0; 
+	overflow:hidden;
+	position:relative;
+}
+.piro_html .h_c_c .div_reg{ 
+	background:#fff; 
+	width:560px; 
+	overflow:hidden; 
+	height:560px; 
+	margin:0; 
+	padding:0; 
+	position:relative; 
+	z-index:1500190;
+}
+.piro_html .h_c_c .resize{ 
+	overflow:hidden; 
+	margin:0; 
+	padding:0; 
+	position:relative; 
+	z-index:1500190;
+}
+.piro_html .h_c_c .div_reg img{}
+.piro_html .h_c_r{
+	width:25px; 
+	background: url(new_skin_left.png) right repeat-y;
+}
+
+.piro_html .h_mb_c{  
+	height:0;
+	background: black;
+	position:relative;
+}
+.piro_html .h_mb_l{ 
+	width:25px;
+	height:0;
+	background: url(new_skin_left.png) left repeat-y; 
+}
+.piro_html .h_mb_r{
+	width:25px;
+	height:0;
+	background: url(new_skin_left.png) right repeat-y;
+	position:relative;
+}
+
+.piro_html .h_b_c{  
+	height:25px;
+	background: url(new_skin_top.png) bottom repeat-x;
+}
+.piro_html .h_b_l{ 
+	width:25px; 
+	height:25px;
+	background: url(new_skin.png) bottom left no-repeat;
+}
+.piro_html .h_b_r{
+	width:25px; 
+	height:25px;
+	background: url(new_skin.png) bottom right no-repeat;
+}
+
+/*::::: LOADER :::::*/
+.piro_loader{
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin:-10px 0 0 -30px;
+	width:70px;
+	height:21px;
+	display:block;
+	z-index:1500197;
+	background: url(loader_nav.png) center no-repeat;   
+	cursor:pointer; 
+}
+.piro_loader span{
+	position:absolute;
+	top:0;
+	left:0;
+	width:70px;
+	height:20px; 
+	padding:0;
+	display:block;
+	z-index:1500198; 
+	background:url(6.png) center center no-repeat; 
+}
+
+/*::::: BOTTOM NAVBAR :::::*/
+.nav_container{
+	position:relative;
+	float:left;
+	margin:0 0 0 0;  
+	height:0; 
+	width:100%; 
+	background: url(nav-bg.png) center center repeat-x; 
+	z-index:1500202;
+}
+/*::::: CAPTION :::::*/
+.piro_caption{
+	position:absolute;
+	bottom:3px;
+	left:3px;
+	margin:0;
+	display:block; 
+	padding:2px 8px;  
+	cursor:text; 
+	z-index:1500197; 
+	width:auto; 
+	height:28px; 
+	overflow:hidden;  
+	background:url(caption.png); 
+	border:1px solid #222;
+/*	-webkit-border-radius:6px;
+	-moz-border-radius:6px;
+	border-radius:6px;*/
+	-moz-box-shadow:0 0 2px #000;
+	-webkit-box-shadow:0 0 2px #000;
+	box-shadow:0 0 2px #000;
+}
+.piro_caption_up_down{
+	width:25px; 
+	height:29px; 
+	background:url(caption_up_down.png) top no-repeat; 
+	position:absolute; top:-29px; right:10px;
+}
+.piro_caption p{
+	font-family:verdana; 
+	line-height:15px; 
+	display:block; 
+	margin:0;
+	padding:0; 
+	min-height:28px;  
+	text-align:left; 
+	font-weight:400; 
+	font-size:12px;  
+	z-index:150019;
+	color:white;
+}
+
+/*::::: GENERIC RULES FOR NAVIGATION ELEMENTS :::::*/
+.piro_close,a.piro_next,a.piro_prev,.piro_prev_fake,.piro_next_fake,.piro_twitter,.piro_facebook{width:26px; height:26px;}
+.piro_close,a.piro_next,a.piro_prev,.piro_prev_fake,.piro_next_fake,.piro_zoomIn,.piro_zoomOut,.piro_twitter,.piro_facebook{position:absolute; right:0; bottom:7px; background:url(buttons.png) no-repeat;}
+
+/*::::: NAVIGATION OVER IMAGE :::::*/
+.nav_big{
+	position:absolute;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+	background: url(blank.gif);
+	z-index:1500201;
+}
+.nav_big a.piro_next{
+	position:absolute; 
+	height:0; 
+	width:30%; 
+	background:transparent; 
+	top:0; 
+	right:0;
+	text-indent:-999em;
+	outline:none; 
+	display:none; 
+	margin:0;
+	border:none; 
+	cursor:pointer;
+	z-index:1500220;
+}
+.nav_big a:hover.piro_next{
+	background:url(arrow_r.png) center right no-repeat;
+}
+.nav_big a.piro_prev{
+	position:absolute;
+	height:0; 
+	width:30%; 
+	background:transparent;
+	top:0; 
+	left:0; 
+	text-indent:-999em; 
+	outline:none;
+	display:none;
+	margin:0;
+	border:none; 
+	cursor:pointer; 
+	z-index:1500221;
+}
+.nav_big a:hover.piro_prev{
+	background:url(arrow_l.png) center left no-repeat;
+}
+
+/*::::: BUTTONS ON THE BOTTOM NAVBAR :::::*/
+.piro_next_fake{
+	outline:none; 
+	text-indent:-999em; 
+	display:none; 
+	margin:0; 
+	background-position: -52px -26px; 
+	border:none; 
+	cursor:auto;
+	z-index:150020;
+}
+.nav_container a.piro_next{ 
+	right:10px;
+	text-indent:-999em;
+	outline:none; 
+	display:block; 
+	margin:0;
+	background-position:-52px 0; 
+	border:none; 
+	cursor:pointer;
+	z-index:150023;
+}
+.nav_container a:hover.piro_next{
+	background-position:-52px -26px;
+}
+.piro_prev_fake{
+	outline:none; 
+	text-indent:-999em; 
+	display:none; 
+	margin:0;
+	background-position:0 -26px; 
+	border:none; 
+	cursor:auto;
+	z-index:150020;
+}
+.nav_container a.piro_prev{
+	text-indent:-999em; 
+	outline:none;
+	display:block;
+	margin:0;
+	background-position: 0 0;
+	border:none; 
+	cursor:pointer; 
+	z-index:150024;
+}
+.nav_container a:hover.piro_prev{
+	background-position:0 -26px;
+}
+.piro_close{
+	background-position:-26px 0;
+	cursor:pointer;
+	margin:0;
+	z-index:150022;
+	display:none;
+}
+.piro_close:hover{
+	background-position: -26px -26px;
+}
+.piro_zoomIn{
+	height:26px; 
+	width:36px; 
+	text-indent:-999em; 
+	background-position:-130px 0;
+	z-index:1500198;
+	visibility:hidden;
+}
+.piro_zoomIn:hover{
+	background-position:-130px -26px;
+}
+.piro_zoomOut{ 
+	height:26px; 
+	width:36px; 
+	text-indent:-999em; 
+	background-position:-130px -26px;
+	z-index:1500199;
+	visibility:hidden;
+}
+.piro_zoomOut:hover{
+	background-position:-130px 0;
+}
+
+.piro_facebook{
+	text-indent:-999em;
+	background-position:-78px 0;
+	z-index:1500198;
+}
+.piro_facebook:hover{
+	background-position:-78px -26px;
+}
+
+.piro_twitter{
+	text-indent:-999em; 
+	background-position:-104px 0;
+	z-index:1500199;
+}
+.piro_twitter:hover{
+	background-position:-104px -26px;
+}
+
