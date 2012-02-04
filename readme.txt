@@ -1,9 +1,9 @@
 === Pirobox Extended V.1.1 wp-plugin ===
-Contributors: Pirolab 
+Contributors: Pirolab, chriscarvache 
 Tags: lightbox, jquery , image gallery , modal window , gallery
 Requires at least: 2.9
 Tested up to: 3.3.1
-Stable tag: 1.1
+Stable tag: 1.2
 Donate link: http://piroblog.pirolab.it/
 
 
