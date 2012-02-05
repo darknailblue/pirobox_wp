@@ -1,9 +1,9 @@
 === Pirobox Extended ===
-Contributors: Pirolab, chriscarvache 
-Tags: lightbox, jquery , image gallery , modal window , gallery
+Contributors: Pirolab, chriscarvache
+Tags: lightbox, jquery, image gallery, modal window, gallery, pirobox, pirolab
 Requires at least: 2.9
 Tested up to: 3.3.1
-Stable tag: 1.2
+Stable tag: 1.2.3
 Donate link: http://piroblog.pirolab.it/
 
 

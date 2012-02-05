@@ -72,7 +72,8 @@ function pb_activate() {
 			'enable_post_type_page' =>		1,
 			'enable_by_default' 	=>		'on',
 			'default_style' 		=>		'style_2',
-			'global_share'			=>		'true'
+			'global_share'			=>		'true',
+			'resize'				=>		'true'
 		);
 		update_option('pb_settings', $defaultoptions);
 	}
@@ -85,6 +86,23 @@ function pb_activate() {
 function pb_options(){ 
 	global $pb_style_array, $pb_background_opacity, $pb_animation_speed, $pb_zoom_animation;	?>
 	<div class="wrap">
+    	<style type="text/css">
+		.form-table select { width: 240px; padding:5px 10px; height:auto; }
+		.pb_mode_label{
+			display:inline-block;
+			margin:0 5px 0 0;
+			padding:6px 10px; 
+			background:#eee; 
+			border:1px solid #dfdfdf;
+			-webkit-border-radius: 4px;
+			-moz-border-radius: 4px;
+			border-radius: 4px;
+			background:url(<?php echo PB_URL  ?>images/checkbox_gradient.gif) left bottom repeat-x;
+		}
+		.pb_mode_label:hover{
+			background:url(<?php echo PB_URL  ?>images/checkbox_gradient_h.gif) left bottom repeat-x;
+		}
+	</style>
 		<div id="icon-options-general" class="icon32"></div><h2><?php _e('Pirobox Extended'); ?></h2>
 		<p><?php _e('Insert beautiful and flexible lightboxes into your Wordpress site with ease.'); ?></p>
 		
@@ -95,13 +113,16 @@ function pb_options(){
 			?>
 			<h3><?php _e('Global Behavior'); ?></h3>
 			<table class="form-table">
-				<tr valign="top"><th scope="row"><label for="pb_settings[default_style]"><?php _e( 'Default Style' ); ?></label></th>
-					<td>
+				<tr valign="middle">
+                	<td  width="180"><?php _e( 'Default Style' ); ?></td>
+					<td width="250">
 						<select id="pb_settings[default_style]" name="pb_settings[default_style]">
 							<?php foreach ($pb_style_array as $style) : ?>
 								<option value="<?php echo $style['value']; ?>" <?php pb_selected($style['value'], $options['default_style']); ?>><?php echo $style['label']; ?></option>
 							<?php endforeach; ?>
 						</select>
+                      </td>
+                      <td>
 						<img src="<?php echo PB_URL;?>/images/style1.jpg" alt="" />
 						<img src="<?php echo PB_URL;?>/images/style2.jpg" alt="" />
 						<img src="<?php echo PB_URL;?>/images/style3.jpg" alt="" />
@@ -109,85 +130,130 @@ function pb_options(){
 					</td>
 				</tr>
 			
-				<tr valign="top"><th scope="row"><label for="pb_settings[global_speed]"><?php _e( 'Transition Speed' ); ?></label></th>
+				<tr valign="middle">
+                	<td><?php _e( 'Transition Speed' ); ?></td>
 					<td>
 						<select id="pb_settings[global_speed]" name="pb_settings[global_speed]">
 							<?php foreach ($pb_animation_speed as $speed) : ?>
 								<option value="<?php echo $speed['value']; ?>" <?php pb_selected($speed['value'], $options['global_speed']); ?>><?php echo $speed['label']; ?></option>
 							<?php endforeach; ?>
 						</select>
-						<span class="description"><?php _e( 'Enter a number in milliseconds used for transition speed.' ); ?></span>
+						
 					</td>
+                    <td><img src="<?php echo PB_URL; ?>images/help.png" alt="" />&nbsp;<span class="description" style="display: none"><?php _e( 'Enter a number in milliseconds used for transition speed.' ); ?></span></td>
 				</tr>
 				
-				<tr valign="top"><th scope="row"><?php _e( 'Zoom Option' ); ?></th>
+				<tr valign="middle">
+                	<td><?php _e( 'Zoom Option' ); ?></td>
 					<td>
-						<input type="radio" name="pb_settings[zoom_option]" id="pb_settings_zoom_option_on" value="true" <?php if ($options['zoom_option'] == 'true') echo ' checked="checked"'; ?>/> <label for="pb_settings_zoom_option_on" style="padding-right: 15px;"><?php _e('Enabled'); ?></label>
-						<input type="radio" name="pb_settings[zoom_option]" id="pb_settings_zoom_option_off" value="false" <?php if ($options['zoom_option'] == 'false') echo ' checked="checked"'; ?> /> <label for="pb_settings_zoom_option_off" style="padding-right: 15px;"><?php _e('Disabled'); ?></label><br />
-						<span class="description"><?php _e('Enable zooming for large images'); ?></span>
+                    	<label for="pb_settings_zoom_option_on" class="pb_mode_label">
+							<input type="radio" name="pb_settings[zoom_option]" id="pb_settings_zoom_option_on" value="true" <?php if ($options['zoom_option'] == 'true') echo ' checked="checked"'; ?>/> 
+                        <?php _e('Enabled'); ?></label>
+                        <label for="pb_settings_zoom_option_off" class="pb_mode_label">
+							<input type="radio" name="pb_settings[zoom_option]" id="pb_settings_zoom_option_off" value="false" <?php if ($options['zoom_option'] == 'false') echo ' checked="checked"'; ?> /> 
+                        <?php _e('Disabled'); ?></label>
+						
 					</td>
+                    <td><img src="<?php echo PB_URL; ?>images/help.png" alt="" />&nbsp;<span class="description" style="display: none"><?php _e('Enable zooming for large images'); ?></span></td>
 				</tr>
 				
-				<tr valign="top"><th scope="row"><label for="pb_settings[zoom_animation]"><?php _e( 'Zoom Animation' ); ?></label></th>
+				<tr valign="middle">
+                	<td><?php _e( 'Zoom Animation' ); ?></td>
 					<td>
 						<select id="pb_settings[zoom_animation]" name="pb_settings[zoom_animation]">
 							<?php foreach ($pb_zoom_animation as $animation) : ?>
 								<option value="<?php echo $animation['value']; ?>" <?php pb_selected($animation['value'], $options['zoom_animation']); ?>><?php echo $animation['label']; ?></option>
 							<?php endforeach; ?>
 						</select>
-						<span class="description"><?php _e('Select the type of animation for large images.'); ?></span>
+						
 					</td>
+                    <td><img src="<?php echo PB_URL; ?>images/help.png" alt="" />&nbsp;<span class="description" style="display: none"><?php _e('Select the type of animation for large images.'); ?></span></td>
 				</tr>
 				
-				<tr valign="top"><th scope="row"><label for="pb_settings[global_opacity]"><?php _e( 'Opacity' ); ?></label></th>
+				<tr valign="middle">
+                	<td><?php _e( 'Resize' ); ?></td>
+					<td>
+                    	<label for="pb_settings_resize_on" class="pb_mode_label">
+							<input type="radio" name="pb_settings[resize]" id="pb_settings_resize_on" value="true" <?php if ($options['resize'] == 'true') echo ' checked="checked"'; ?>/> 
+                        <?php _e('True'); ?></label>
+                        <label for="pb_settings_resize_off" class="pb_mode_label">
+							<input type="radio" name="pb_settings[resize]" id="pb_settings_resize_off" value="false" <?php if ($options['resize'] == 'false') echo ' checked="checked"'; ?> /> 
+                        <?php _e('False'); ?></label>
+					</td>
+                    <td><img src="<?php echo PB_URL; ?>images/help.png" alt="" />&nbsp;<span class="description" style="display: none"><?php _e('This option will make larger images fit the screen.'); ?></span></td>
+				</tr>
+				
+				<tr valign="middle">
+                	<td><?php _e( 'Opacity' ); ?></td>
 					<td>
 						<select id="pb_settings[global_opacity]" name="pb_settings[global_opacity]">
 							<?php foreach ($pb_background_opacity as $opacity) : ?>
 								<option value="<?php echo $opacity['value']; ?>" <?php pb_selected($opacity['value'], $options['global_opacity']); ?>><?php echo $opacity['label']; ?></option>
 							<?php endforeach; ?>
 						</select>
-						<span class="description"><?php _e( 'Enter a decimal that will be used to determine the Priobox\'s opacity.' ); ?></span>
+						
 					</td>
+                    <td><img src="<?php echo PB_URL; ?>images/help.png" alt="" />&nbsp;<span class="description" style="display: none"><?php _e( 'Enter a decimal that will be used to determine the Priobox\'s opacity.' ); ?></span></td>
 				</tr>
 				
-				<tr valign="top"><th scope="row"><?php _e( 'Center Pirobox on page' ); ?></th>
+				<tr valign="middle">
+                	<td><?php _e( 'Center Pirobox on page' ); ?></td>
 					<td>
-						<input type="radio" name="pb_settings[global_center]" id="pb_settings_global_center_on" value="true" <?php if ($options['global_center'] == 'true') echo ' checked="checked"'; ?>/> <label for="pb_settings_global_center_on" style="padding-right: 15px;"><?php _e('Yes'); ?></label>
-						<input type="radio" name="pb_settings[global_center]" id="pb_settings_global_center_off" value="false" <?php if ($options['global_center'] == 'false') echo ' checked="checked"'; ?> /> <label for="pb_settings_global_center_off" style="padding-right: 15px;"><?php _e('No'); ?></label><br />
-						<span class="description"><?php _e('Keeping this option on will make sure that the Pirobox is always display in the center of the page.'); ?></span>
+                    	<label for="pb_settings_global_center_on" class="pb_mode_label">
+							<input type="radio" name="pb_settings[global_center]" id="pb_settings_global_center_on" value="true" <?php if ($options['global_center'] == 'true') echo ' checked="checked"'; ?>/> 
+                        <?php _e('Enabled'); ?></label>
+                        <label for="pb_settings_global_center_off" class="pb_mode_label">
+							<input type="radio" name="pb_settings[global_center]" id="pb_settings_global_center_off" value="false" <?php if ($options['global_center'] == 'false') echo ' checked="checked"'; ?> /> 
+                        <?php _e('Disabled'); ?></label>
 					</td>
+                    <td><img src="<?php echo PB_URL; ?>images/help.png" alt="" />&nbsp;<span class="description" style="display: none"><?php _e('Keeping this option on will make sure that the Pirobox is always display in the center of the page.'); ?></span></td>
 				</tr>
 				
-				<tr valign="top"><th scope="row"><?php _e( 'Enable Share Features' ); ?></th>
+				<tr valign="middle">
+                	<td><?php _e( 'Enable Share Features' ); ?></td>
 					<td>
-						<input type="radio" name="pb_settings[global_share]" id="pb_settings_global_share_on" value="true" <?php if ($options['global_share'] == 'true') echo ' checked="checked"'; ?>/> <label for="pb_settings_global_share_on" style="padding-right: 15px;"><?php _e('Enabled'); ?></label>
-						<input type="radio" name="pb_settings[global_share]" id="pb_settings_global_share_off" value="false" <?php if ($options['global_share'] == 'false') echo ' checked="checked"'; ?> /> <label for="pb_settings_global_share_off" style="padding-right: 15px;"><?php _e('Disabled'); ?></label><br />
-						<span class="description"><?php _e('This option will enabling sharing of Pirobox content via Facebook and Twitter.'); ?></span>
+                    	<label for="pb_settings_global_share_on" class="pb_mode_label">
+							<input type="radio" name="pb_settings[global_share]" id="pb_settings_global_share_on" value="true" <?php if ($options['global_share'] == 'true') echo ' checked="checked"'; ?>/> 
+                        <?php _e('Enabled'); ?></label>
+                        <label for="pb_settings_global_share_off" class="pb_mode_label">
+							<input type="radio" name="pb_settings[global_share]" id="pb_settings_global_share_off" value="false" <?php if ($options['global_share'] == 'false') echo ' checked="checked"'; ?> /> 
+                        <?php _e('Disabled'); ?></label>
 					</td>
+                    <td><img src="<?php echo PB_URL; ?>images/help.png" alt="" />&nbsp;<span class="description" style="display: none"><?php _e('This option will enabling sharing of Pirobox content via Facebook and Twitter.'); ?></span></td>
 				</tr>
 				
 			</table>
 			
 			<h3><?php _e('Implementation'); ?></h3>
 			<table class="form-table">
-				<tr valign="top"><th scope="row"><?php _e( 'Enable on these post types' ); ?></th>
+				<tr valign="middle">
+                	<td width="180"><?php _e( 'Enable on these post types' ); ?></td>
 					<td>
 						<?php
 						$post_types=get_post_types();
 						foreach ($post_types as $post_type ) :
 						?>
+                        	<label class="description pb_mode_label"  for="pb_settings[enable_post_type_<?php echo $post_type; ?>]">
 							<input type="checkbox" id="pb_settings[enable_post_type_<?php echo $post_type; ?>]" name="pb_settings[enable_post_type_<?php echo $post_type; ?>]" value="1" <?php pb_checked($options['enable_post_type_' . $post_type], 1); ?> />
-							<label class="description" for="pb_settings[enable_post_type_<?php echo $post_type; ?>]"><?php _e( $post_type ); ?></label><br />
+							<?php _e( $post_type ); ?></label>
 						<?php endforeach; ?>
 					</td>
+					<td><img src="<?php echo PB_URL; ?>images/help.png" alt="" />&nbsp;<span class="description" style="display: none"><?php _e('Select which post types you wish you use Pirobox on.'); ?></span></td>
 				</tr>
 					
-				<tr valign="top"><th scope="row"><?php _e( 'Enable on a post per post basis' ); ?></th>
+				<tr valign="middle">
+                	<td><?php _e( 'Enable on a post per post basis' ); ?></td>
 					<td>
-						<input type="radio" name="pb_settings[enable_by_default]" id="pb_settings_enable_by_default_on" value="on" <?php if ($options['enable_by_default'] == 'on') echo ' checked="checked"'; ?>/> <label for="pb_settings_enable_by_default_on" style="padding-right: 15px;"><?php _e('On'); ?></label>
-						<input type="radio" name="pb_settings[enable_by_default]" id="pb_settings_enable_by_default_off" value="off" <?php if ($options['enable_by_default'] == 'off') echo ' checked="checked"'; ?> /> <label for="pb_settings_enable_by_default_off" style="padding-right: 15px;"><?php _e('Off'); ?></label><br />
-						<span class="description"><?php _e('This option will enable the global Pirobox options on all the above selected post types by default.'); ?></span>
+                    	<label for="pb_settings_enable_by_default_on" class="pb_mode_label">
+							<input type="radio" name="pb_settings[enable_by_default]" id="pb_settings_enable_by_default_on" value="on" <?php if ($options['enable_by_default'] == 'on') echo ' checked="checked"'; ?>/> 
+							<?php _e('On'); ?>
+						</label>
+                        <label for="pb_settings_enable_by_default_off" class="pb_mode_label">
+							<input type="radio" name="pb_settings[enable_by_default]" id="pb_settings_enable_by_default_off" value="off" <?php if ($options['enable_by_default'] == 'off') echo ' checked="checked"'; ?> />
+							<?php _e('Off'); ?>
+						</label>
 					</td>
+					<td><img src="<?php echo PB_URL; ?>images/help.png" alt="" />&nbsp;<span class="description" style="display: none"><?php _e('This option will enable the global Pirobox options on all the above selected post types by default.'); ?></span></td>
 				</tr>
 								
 			</table>
@@ -297,90 +363,134 @@ function pb_output_meta( $post ) {
 			'style'				=>		$options['default_style'],
 			'share'				=>		$options['global_share'],
 			'zoom_option'		=>		$options['zoom_option'],
-			'zoom_animation'	=>		$options['zoom_animation']
+			'zoom_animation'	=>		$options['zoom_animation'],
+			'resize'			=>		$options['resize']
 		);
 	}
 	?>
 	<style type="text/css">
-		.pb_custom select { width: 200px; }
+		.pb_custom select { width: 240px; padding:5px 10px; height:auto; }
+		.pb_mode_label{
+			display:inline-block;
+			margin:0 5px 0 0;
+			padding:6px 10px; 
+			background:#eee; 
+			border:1px solid #dfdfdf;
+			-webkit-border-radius: 4px;
+			-moz-border-radius: 4px;
+			border-radius: 4px;
+			background:url(<?php echo PB_URL  ?>images/checkbox_gradient.gif) left bottom repeat-x;
+		}
+		.pb_mode_label:hover{
+			background:url(<?php echo PB_URL  ?>images/checkbox_gradient_h.gif) left bottom repeat-x;
+		}
 	</style>
 	<h4><?php _e('Mode'); ?></h4>
 	<p>
-		<input type="radio" name="pb_meta[mode]" id="pb_mode_off" value="off" class="pb_mode" <?php if ($meta['mode'] == 'off') echo ' checked="checked"'; ?> /> <label for="pb_mode_off" style="padding-right: 15px;">Off</label>
-		<input type="radio" name="pb_meta[mode]" id="pb_mode_global" value="global" class="pb_mode" <?php if ($meta['mode'] == 'global') echo ' checked="checked"'; ?> /> <label for="pb_mode_global" style="padding-right: 15px;">Use Global Settings</label>
-		<input type="radio" name="pb_meta[mode]" id="pb_mode_perpage" value="perpage" class="pb_mode" <?php if ($meta['mode'] == 'perpage') echo ' checked="checked"'; ?> /> <label for="pb_mode_perpage">Use Per Page Settings</label>
+    	<label for="pb_mode_off" class="pb_mode_label">
+			<input type="radio" name="pb_meta[mode]" id="pb_mode_off" value="off" class="pb_mode" <?php if ($meta['mode'] == 'off') echo ' checked="checked"'; ?> /> 
+        	Off
+        </label>
+		<label for="pb_mode_global" class="pb_mode_label">
+			<input type="radio" name="pb_meta[mode]" id="pb_mode_global" value="global" class="pb_mode" <?php if ($meta['mode'] == 'global') echo ' checked="checked"'; ?> /> 
+        	Use Global Settings
+        </label>
+		<label for="pb_mode_perpage" class="pb_mode_label">
+			<input type="radio" name="pb_meta[mode]" id="pb_mode_perpage" value="perpage" class="pb_mode" <?php if ($meta['mode'] == 'perpage') echo ' checked="checked"'; ?> /> 
+        	Use Per Page Settings
+         </label>
 	</p>
 	<div class="pb_global" <?php if (($meta['mode'] == 'off') || ($meta['mode'] == 'perpage')) echo ' style="display: none;"'; ?>>
 		<h4 style="margin: 0; padding: 1.33em 0 1em;"><?php _e('Global Settings'); ?></h4>
 		<table class="form-table" style="margin-top: 0;">
-			<tr valign="top"><th scope="row" style="padding-left: 0; padding-right: 0; padding-top: 0;"><?php _e( 'Style' ); ?></th>
+			<tr valign="top">
+            	<th scope="row" style="padding-left: 0; padding-right: 0; padding-top: 0;"><?php _e( 'Style' ); ?></th>
 				<td style="padding-top: 0;">
-					<?php echo $options['default_style']; ?>
+					<strong><?php echo $options['default_style']; ?></strong>
 				</td>
 			</tr>
-			<tr valign="top"><th scope="row" style="padding-left: 0; padding-right: 0; padding-top: 0;"><?php _e( 'Transition Speed' ); ?></th>
+			<tr valign="top">
+            	<th scope="row" style="padding-left: 0; padding-right: 0; padding-top: 0;"><?php _e( 'Transition Speed' ); ?></th>
 				<td style="padding-top: 0;">
-					<?php echo $options['global_speed']; ?>
+					<strong><?php echo $options['global_speed']; ?></strong>
 				</td>
 			</tr>
-			<tr valign="top"><th scope="row" style="padding-left: 0; padding-right: 0; padding-top: 0;"><?php _e( 'Zoom Option' ); ?></th>
+			<tr valign="top">
+            	<th scope="row" style="padding-left: 0; padding-right: 0; padding-top: 0;"><?php _e( 'Zoom Option' ); ?></th>
 				<td style="padding-top: 0;">
-					<?php echo $options['zoom_option']; ?>
+					<strong><?php echo $options['zoom_option']; ?></strong>
 				</td>
 			</tr>
-			<tr valign="top"><th scope="row" style="padding-left: 0; padding-right: 0; padding-top: 0;"><?php _e( 'Zoom Animation' ); ?></th>
+			<tr valign="top">
+            	<th scope="row" style="padding-left: 0; padding-right: 0; padding-top: 0;"><?php _e( 'Zoom Animation' ); ?></th>
 				<td style="padding-top: 0;">
-					<?php echo $options['zoom_animation']; ?>
+					<strong><?php echo $options['zoom_animation']; ?></strong>
 				</td>
 			</tr>
-			<tr valign="top"><th scope="row" style="padding-left: 0; padding-right: 0; padding-top: 0;"><?php _e( 'Opacity' ); ?></th>
+			<tr valign="top">
+            	<th scope="row" style="padding-left: 0; padding-right: 0; padding-top: 0;"><?php _e( 'Resize' ); ?></th>
 				<td style="padding-top: 0;">
-					<?php echo $options['global_opacity']; ?>
+					<strong><?php echo $options['resize']; ?></strong>
 				</td>
 			</tr>
-			<tr valign="top"><th scope="row" style="padding-left: 0; padding-right: 0; padding-top: 0;"><?php _e( 'Center Pirobox on page' ); ?></th>
+			<tr valign="top">
+            	<th scope="row" style="padding-left: 0; padding-right: 0; padding-top: 0;"><?php _e( 'Opacity' ); ?></th>
 				<td style="padding-top: 0;">
-					<?php echo $options['global_center']; ?>
+					<strong><?php echo $options['global_opacity']; ?></strong>
 				</td>
 			</tr>
-			<tr valign="top"><th scope="row" style="padding-left: 0; padding-right: 0; padding-top: 0;"><?php _e( 'Enable Sharing Features' ); ?></th>
+			<tr valign="top">
+            	<th scope="row" style="padding-left: 0; padding-right: 0; padding-top: 0;"><?php _e( 'Center Pirobox on page' ); ?></th>
 				<td style="padding-top: 0;">
-					<?php echo $options['global_share']; ?>
+					<strong><?php echo $options['global_center']; ?></strong>
 				</td>
 			</tr>
-			
+			<tr valign="top">
+            	<th scope="row" style="padding-left: 0; padding-right: 0; padding-top: 0;"><?php _e( 'Enable Sharing Features' ); ?></th>
+				<td style="padding-top: 0;">
+					<strong><?php echo $options['global_share']; ?></strong>
+				</td>
+			</tr>
 		</table>
 	</div>
 	<div class="pb_custom" <?php if (($meta['mode'] == 'off') || ($meta['mode'] == 'global')) echo ' style="display: none;"'; ?>>
 		<h4 style="margin: 0; padding: 1.33em 0;"><?php _e('Per Page Settings'); ?></h4>
 		<table class="form-table" style="margin-top: 0;">
-			<tr valign="top"><th scope="row" style="padding-left: 0; padding-right: 0;"><label for="pb_settings[style]"><?php _e( 'Style' ); ?></label></th>
-				<td>
+			<tr valign="top">
+            	<th scope="row" style="padding-left: 0; padding-right: 0;"><label for="pb_settings[style]"><?php _e( 'Style' ); ?></label></th>
+				<td width="250">
 					<select id="pb_meta[style]" name="pb_meta[style]">
 						<?php foreach ($pb_style_array as $style) : ?>
 							<option value="<?php echo $style['value']; ?>" <?php pb_selected($style['value'], $meta['style']); ?>><?php echo $style['label']; ?></option>
 						<?php endforeach; ?>
 					</select>
 				</td>
+                <td><img src="<?php echo PB_URL; ?>images/help.png" alt="" />&nbsp;<span class="description" style="display: none"><?php _e( 'Select pirobox style' ); ?></span></td>
 			</tr>
 		
-			<tr valign="top"><th scope="row" style="padding-left: 0; padding-right: 0; padding-top: 0;"><label for="pb_meta[speed]"><?php _e( 'Transition Speed' ); ?></label></th>
+			<tr valign="top">
+            	<th scope="row" style="padding-left: 0; padding-right: 0; padding-top: 0;"><label for="pb_meta[speed]"><?php _e( 'Transition Speed' ); ?></label></th>
 				<td style="padding-top: 0;">
 					<select id="pb_meta[speed]" name="pb_meta[speed]">
 						<?php foreach ($pb_animation_speed as $speed) : ?>
 							<option value="<?php echo $speed['value']; ?>" <?php pb_selected($speed['value'], $meta['speed']); ?>><?php echo $speed['label']; ?></option>
 						<?php endforeach; ?>
 					</select>
-					<span class="description"><?php _e( 'Select animation speed' ); ?></span>
 				</td>
+                <td><img src="<?php echo PB_URL; ?>images/help.png" alt="" />&nbsp;<span class="description" style="display: none"><?php _e( 'Select animation speed' ); ?></span></td>
 			</tr>
 			
 			<tr valign="top"><th scope="row" style="padding-left: 0; padding-right: 0;"><?php _e( 'Zoom Option' ); ?></th>
 				<td>
-					<input type="radio" name="pb_meta[zoom_option]" id="pb_meta_zoom_option_on" value="true" <?php if ($meta['zoom_option'] == 'true') echo ' checked="checked"'; ?>/> <label for="pb_meta_zoom_option_on" style="padding-right: 15px;"><?php _e('Enabled'); ?></label>
-					<input type="radio" name="pb_meta[zoom_option]" id="pb_meta_zoom_option_off" value="false" <?php if ($meta['zoom_option'] == 'false') echo ' checked="checked"'; ?> /> <label for="pb_meta_zoom_option_off" style="padding-right: 15px;"><?php _e('Disabled'); ?></label><br />
-					<span class="description"><?php _e('How to handle large images'); ?></span>
+                	<label for="pb_meta_zoom_option_on" class="pb_mode_label">
+						<input type="radio" name="pb_meta[zoom_option]" id="pb_meta_zoom_option_on" value="true" <?php if ($meta['zoom_option'] == 'true') echo ' checked="checked"'; ?>/> 
+                    <?php _e('Enabled'); ?>
+                    </label>
+                    <label for="pb_meta_zoom_option_off"  class="pb_mode_label">
+						<input type="radio" name="pb_meta[zoom_option]" id="pb_meta_zoom_option_off" value="false" <?php if ($meta['zoom_option'] == 'false') echo ' checked="checked"'; ?> /> 
+                    <?php _e('Disabled'); ?></label>
 				</td>
+                <td><img src="<?php echo PB_URL; ?>images/help.png" alt="" />&nbsp;<span class="description" style="display: none"><?php _e('How to handle large images'); ?></span></td>
 			</tr>
 			
 			<tr valign="top"><th scope="row" style="padding-left: 0; padding-right: 0; padding-top: 0;"><label for="pb_meta[speed]"><?php _e( 'Zoom Animation' ); ?></label></th>
@@ -390,8 +500,21 @@ function pb_output_meta( $post ) {
 							<option value="<?php echo $animation['value']; ?>" <?php pb_selected($animation['value'], $meta['zoom_animation']); ?>><?php echo $animation['label']; ?></option>
 						<?php endforeach; ?>
 					</select>
-					<span class="description"><?php _e( 'Large image zoom animation type' ); ?></span>
 				</td>
+                <td><img src="<?php echo PB_URL; ?>images/help.png" alt="" />&nbsp;<span class="description" style="display: none"><?php _e( 'Large image zoom animation type' ); ?></span></td>
+			</tr>
+			
+			<tr valign="top"><th scope="row" style="padding-left: 0; padding-right: 0;"><?php _e( 'Resize' ); ?></th>
+				<td>
+                	<label for="pb_meta_resize_on" class="pb_mode_label">
+						<input type="radio" name="pb_meta[resize]" id="pb_meta_resize_on" value="true" <?php if ($meta['resize'] == 'true') echo ' checked="checked"'; ?>/> 
+                    <?php _e('True'); ?>
+                    </label>
+                    <label for="pb_meta_resize_off"  class="pb_mode_label">
+						<input type="radio" name="pb_meta[resize]" id="pb_meta_resize_off" value="false" <?php if ($meta['resize'] == 'false') echo ' checked="checked"'; ?> /> 
+                    <?php _e('False'); ?></label>
+				</td>
+                <td><img src="<?php echo PB_URL; ?>images/help.png" alt="" />&nbsp;<span class="description" style="display: none"><?php _e('Enable image resizing'); ?></span></td>
 			</tr>
 			
 			<tr valign="top"><th scope="row" style="padding-left: 0; padding-right: 0;"><label for="pb_meta[opacity]"><?php _e( 'Opacity' ); ?></label></th>
@@ -401,25 +524,33 @@ function pb_output_meta( $post ) {
 							<option value="<?php echo $opacity['value']; ?>" <?php pb_selected($opacity['value'], $meta['opacity']); ?>><?php echo $opacity['label']; ?></option>
 						<?php endforeach; ?>
 					</select>
-					<span class="description"><?php _e( 'Enter a decimal that will be used to determine the Priobox\'s opacity.' ); ?></span>
 				</td>
+                <td><img src="<?php echo PB_URL; ?>images/help.png" alt="" />&nbsp;<span class="description" style="display: none"><?php _e( 'Enter a decimal that will be used to determine the Priobox\'s opacity.' ); ?></span></td>
 			</tr>
 			
 			<tr valign="top"><th scope="row" style="padding-left: 0; padding-right: 0;"><?php _e( 'Center Pirobox on page' ); ?></th>
-				<td>
-					<input type="radio" name="pb_meta[center]" id="pb_meta_global_center_on" value="true" <?php if ($meta['center'] == 'true') echo ' checked="checked"'; ?>/> <label for="pb_meta_global_center_on" style="padding-right: 15px;"><?php _e('True'); ?></label>
-					<input type="radio" name="pb_meta[center]" id="pb_meta_global_center_off" value="false" <?php if ($meta['center'] == 'false') echo ' checked="checked"'; ?> /> <label for="pb_meta_global_center_off" style="padding-right: 15px;"><?php _e('False'); ?></label><br />
-					<span class="description"><?php _e('Keeping this option on will make sure that the Pirobox is always display in the center of the page.'); ?></span>
+				<td>	
+                	<label for="pb_meta_global_center_on" class="pb_mode_label">
+						<input type="radio" name="pb_meta[center]" id="pb_meta_global_center_on" value="true" <?php if ($meta['center'] == 'true') echo ' checked="checked"'; ?>/> 
+                    <?php _e('Enabled'); ?></label>
+                    <label for="pb_meta_global_center_off" class="pb_mode_label">
+						<input type="radio" name="pb_meta[center]" id="pb_meta_global_center_off" value="false" <?php if ($meta['center'] == 'false') echo ' checked="checked"'; ?> /> 
+                    <?php _e('Disabled'); ?></label>
 				</td>
+                <td><img src="<?php echo PB_URL; ?>images/help.png" alt="" />&nbsp;<span class="description" style="display: none"><?php _e('Keeping this option on will make sure that the Pirobox is always display in the center of the page.'); ?></span></td>
 			</tr>
 			
 			
 			<tr valign="top"><th scope="row" style="padding-left: 0; padding-right: 0;"><?php _e( 'Enable sharing features' ); ?></th>
 				<td>
-					<input type="radio" name="pb_meta[share]" id="pb_meta_global_share_on" value="true" <?php if ($meta['share'] == 'true') echo ' checked="checked"'; ?>/> <label for="pb_meta_global_share_on" style="padding-right: 15px;"><?php _e('Enabled'); ?></label>
-					<input type="radio" name="pb_meta[share]" id="pb_meta_global_share_off" value="false" <?php if ($meta['share'] == 'false') echo ' checked="checked"'; ?> /> <label for="pb_meta_global_share_off" style="padding-right: 15px;"><?php _e('Disabled'); ?></label><br />
-					<span class="description"><?php _e('Keeping this option on will make sure that the Pirobox is always display in the center of the page.'); ?></span>
+                	<label for="pb_meta_global_share_on" class="pb_mode_label">
+						<input type="radio" name="pb_meta[share]" id="pb_meta_global_share_on" value="true" <?php if ($meta['share'] == 'true') echo ' checked="checked"'; ?>/> 
+                    <?php _e('Enabled'); ?></label>
+                    <label for="pb_meta_global_share_off" class="pb_mode_label">
+						<input type="radio" name="pb_meta[share]" id="pb_meta_global_share_off" value="false" <?php if ($meta['share'] == 'false') echo ' checked="checked"'; ?> /> 
+                    <?php _e('Disabled'); ?></label>
 				</td>
+                <td><img src="<?php echo PB_URL; ?>images/help.png" alt="" />&nbsp;<span class="description" style="display: none"><?php _e('Keeping this option on will make sure that you can share yoyr images on FB or twitter'); ?></span></td>
 			</tr>
 		</table>
 	</div>
@@ -483,7 +614,8 @@ function pb_populate_post_meta( $postID ) {
 			'share'				=>		$options['global_share'],
 			'style'				=>		$options['default_style'],
 			'zoom_option'		=>		$options['zoom_option'],
-			'zoom_animation'	=>		$options['zoom_animation']
+			'zoom_animation'	=>		$options['zoom_animation'],
+			'resize'			=>		$options['resize']
 		);
 	}
 	
@@ -503,14 +635,15 @@ function pb_footer(){
 		if ($meta['mode'] != 'off') { ?>
 <script type="text/javascript">
 	jQuery(function($) {
-		jQuery('a[href$="jpg"], a[href$="bmp"], a[href$="gif"], a[href$="jpeg"], a[href$="png"]').addClass('pirobox_gall_<?php echo $post->ID; ?>').attr('media','gallery');
+		jQuery('a[href$="jpg"], a[href$="bmp"], a[href$="gif"], a[href$="jpeg"], a[href$="png"]').addClass('pirobox_gall_<?php echo $post->ID; ?>').attr('rel','gallery');
 		$.pirobox_ext({
 			piro_speed : <?php echo $meta['speed']; ?>,
 			zoom_mode : <?php echo $meta['zoom_option']; ?>,
 			move_mode : '<?php echo $meta['zoom_animation']; ?>',
 			bg_alpha : <?php echo $meta['opacity']; ?>,
 			piro_scroll : <?php echo $meta['center']; ?>,
-			share: <?php echo $meta['share']; ?>
+			share: <?php echo $meta['share']; ?>,
+			resize: <?php echo $meta['resize']; ?>
 		});
 	});
 </script>

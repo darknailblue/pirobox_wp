@@ -29,11 +29,10 @@
 	display:block; 
 	padding:0; 
 	z-index:150001;
-	border: none!important;
 }
 
 /*::::: GENERIC RULES FOR TABLE AND IMG :::::*/
-.piro_html table,.piro_html tbody,.piro_html tr,.piro_html th,.piro_html td{margin:0;padding:0;border:none;vertical-align: top!important;}
+.piro_html table,.piro_html tbody,.piro_html tr,.piro_html th,.piro_html td{margin:0;padding:0;border:none; vertical-align: top!important;}
 .piro_html img{ margin:0; padding:0; border:none;}
 
 /*::::: TABLE STRUCTURE :::::*/
@@ -123,40 +122,44 @@
 	position:absolute;
 	top:50%;
 	left:50%;
-	margin:-10px 0 0 -30px;
-	width:70px;
-	height:21px;
+	margin:-20px 0 0 -20px;
+	width:40px;
+	height:40px;
 	display:block;
 	z-index:1500197;
-	background: url(loader_nav.png) center no-repeat;   
-	cursor:pointer; 
+	cursor:pointer;
+	background:url(loader_nav.png) no-repeat;
 }
 .piro_loader span{
 	position:absolute;
-	top:0;
-	left:0;
-	width:70px;
-	height:20px; 
+	top:50%;
+	left:50%;
+	margin-top:-20px;
+	margin-left:-20px;
+	width:40px;
+	height:40px; 
 	padding:0;
 	display:block;
 	z-index:1500198; 
-	background:url(6.png) center center no-repeat; 
+	background:url(loader.gif) center center no-repeat; 
 }
 
 /*::::: BOTTOM NAVBAR :::::*/
 .nav_container{
 	position:relative;
 	float:left;
-	margin:0 0 0 0;  
+	margin:5px 0 0 0;
 	height:0; 
-	width:100%; 
-	background: url(nav-bg.png) center center repeat-x; 
+	width:99.8%; 
+	background: url(nav-bg.png) top left repeat-x; 
 	z-index:1500202;
+	border-left:1px solid #101010;
+	border-right:1px solid #101010;
 }
 /*::::: CAPTION :::::*/
 .piro_caption{
 	position:absolute;
-	bottom:3px;
+	bottom:4px;
 	left:3px;
 	margin:0;
 	display:block; 
@@ -167,13 +170,13 @@
 	height:28px; 
 	overflow:hidden;  
 	background:url(caption.png); 
-	border:1px solid #222;
-/*	-webkit-border-radius:6px;
+/*	border:1px solid #111;
+	-webkit-border-radius:6px;
 	-moz-border-radius:6px;
-	border-radius:6px;*/
+	border-radius:6px;
 	-moz-box-shadow:0 0 2px #000;
 	-webkit-box-shadow:0 0 2px #000;
-	box-shadow:0 0 2px #000;
+	box-shadow:0 0 2px #000;*/
 }
 .piro_caption_up_down{
 	width:25px; 
@@ -344,4 +347,10 @@
 .piro_twitter:hover{
 	background-position:-104px -26px;
 }
-
+.piro_html .h_c_c .div_reg .clone{
+	background:white;
+	margin:0;
+	padding:10px;
+	float:left;
+	position:relative;
+}

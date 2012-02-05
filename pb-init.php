@@ -5,7 +5,7 @@ Plugin URI: http://wordpress.org/extend/plugins/pirobox-extended-for-wp-v10/
 Description: This plugin automatically add the rel="gallery" and media="gallery" to images linked in a post.&nbsp; If the script finds more than 1 image, it automatically creates an image gallery.&nbsp; The plugin adds all necessary files to make it work. You also have the option to call any kind of file with Pirobox Extended.&nbsp; Just follow <a href="http://www.pirolab.it/pirobox/">these instructions</a>.
 Author: <a href="http://piroblog.pirolab.it/">Diego Valobra</a>, <a href="http://chriscarvache.com/">Chris Carvache</a>
 Author URI: http://piroblog.pirolab.it/
-Version: 1.2
+Version: 1.2.3
 License: GPL2
 
 This program is free software; you can redistribute it and/or modify
@@ -25,24 +25,24 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 /**
  * Define all globals
  */
-define('PB_VERSION', 012);
+define('PB_VERSION', 0123);
 define('PB_URL', rtrim(plugin_dir_url(__FILE__)));
 define('PB_DIR', rtrim(plugin_dir_path(__FILE__)));
 $pb_style_array = array(
 	'0'	=> array(
 		'value'	=>	'style_1',
-		'label'	=>	'Double Border, Black on White'
+		'label'	=>	'Double Border, White on Black  '
 	),
 	'1'	=> array(
-		'value'	=>	'style_2',
-		'label'	=>	'Double Border, White on Black'
+		'value'	=>	'style_4',
+		'label'	=>	'Double Border,  Black on White '
 	),
 	'2'	=> array(
-		'value'	=>	'style_3',
+		'value'	=>	'style_2',
 		'label'	=>	'White with Shadow'
 	),
 	'3'	=> array(
-		'value'	=>	'style_4',
+		'value'	=>	'style_3',
 		'label'	=>	'Black with Shadow'
 	)
 );
